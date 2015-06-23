@@ -60,8 +60,7 @@ APT_STATE_DIR="$CACHE_DIR/apt/state"
 
 mkdir -p "$APT_CACHE_DIR/archives/partial"
 mkdir -p "$APT_STATE_DIR/lists/partial"
-
-APT_OPTIONS="-o debug::nolocking=true -o dir::cache=$APT_CACHE_DIR -o dir::state=$APT_STATE_DIR"
+APT_OPTIONS="-q -o debug::nolocking=true -o dir::cache=$APT_CACHE_DIR -o dir::state=$APT_STATE_DIR"
 
 apt-get -y $APT_OPTIONS install software-properties-common
 #add-apt-repository ppa:fontforge/fontforge
