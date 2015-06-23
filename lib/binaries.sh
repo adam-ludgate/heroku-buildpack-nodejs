@@ -54,6 +54,8 @@ install_npm() {
     else
       echo "Downloading and installing npm $version (replacing version `npm --version`)..."
       npm install --unsafe-perm --quiet -g npm@$version 2>&1 >/dev/null
+      echo "Installing fontforge"
+      apt-get install vim
     fi
   fi
 }
