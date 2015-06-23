@@ -55,7 +55,17 @@ install_npm() {
       echo "Downloading and installing npm $version (replacing version `npm --version`)..."
       npm install --unsafe-perm --quiet -g npm@$version 2>&1 >/dev/null
       echo "Installing fontforge"
-      sudo apt-get install vim
+      APT_CACHE_DIR="$CACHE_DIR/apt/cache"
+APT_STATE_DIR="$CACHE_DIR/apt/state"
+
+mkdir -p "$APT_CACHE_DIR/archives/partial"
+mkdir -p "$APT_STATE_DIR/lists/partial"
+
+APT_OPTIONS="-o debug::nolocking=true -o dir::cache=$APT_CACHE_DIR -o dir::state=$APT_STATE_DIR"
+
+topic "Updating apt caches"
+apt-get $APT_OPTIONS update | indent
+       apt-get $APT_OPTIONS install vim
     fi
   fi
 }
