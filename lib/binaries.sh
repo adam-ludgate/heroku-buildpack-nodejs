@@ -63,8 +63,10 @@ mkdir -p "$APT_STATE_DIR/lists/partial"
 
 APT_OPTIONS="-o debug::nolocking=true -o dir::cache=$APT_CACHE_DIR -o dir::state=$APT_STATE_DIR"
 
+apt-get -y $APT_OPTIONS install software-properties-common
+add-apt-repository ppa:fontforge/fontforge
 apt-get $APT_OPTIONS update | indent
-       apt-get $APT_OPTIONS install vim
+       apt-get -y $APT_OPTIONS install fontforge
     fi
   fi
 }
